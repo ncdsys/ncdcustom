@@ -6,6 +6,8 @@ hostnamectl set-hostname ${myncdid}-$hhmm.corp.ncodeit.com
 echo "Hostname Updated to $(hostnamectl)"
 echo "populating the /etc/hosts file with current hostname and ip"
 read -p "Enter the IP address of your server: " myip
+grep -v $myip /etc/hosts > /tmp/etchosts
+cp /tmp/etchosts /etc/hosts
 echo "$myip ${myncdid}-$hhmm.corp.ncodeit.com" >> /etc/hosts 
 echo "Your updated /etc/hosts file is "
 cat /etc/hosts
